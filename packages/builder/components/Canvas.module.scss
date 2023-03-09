@@ -1,0 +1,24 @@
+.BuilderComponentView {
+  box-sizing: border-box;
+  border: 1px solid transparent;
+
+  &.DefaultComponent {
+    border: 1px dashed grey;
+  }
+
+  &.selected {
+    border: 1px solid blue;
+  }
+
+  &:not(.injected) {
+    &:hover {
+      border: 1px dashed blue;
+    }
+  }
+
+  .componentName {
+    padding: 5px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+}
