@@ -15,8 +15,13 @@ export type domElement = {
   parentId?: string;
   type: string;
   props?: Record<string, any>;
-  children?: string | domElement[]
+  children?: null | string | domElement[];
 }
+
+export type focusedEl = domElement & {
+  DOMRect: DOMRect;
+  children?: any;
+};
 
 export type Root = {
   header: null | domElement;
@@ -54,9 +59,14 @@ export const PageContentState = atom<BuilderPage['content']>({
   }
 });
 
-export const SelectedElement = atom<string>({
+export const SelectedElement = atom<null|focusedEl>({
   key: 'SelectedElement',
-  default: '',
+  default: null,
+});
+
+export const HoveredElement = atom<focusedEl[]>({
+  key: 'HoveredElement',
+  default: []
 });
 
 export const ChildrenState = atomFamily<null|string|domElement[], string>({

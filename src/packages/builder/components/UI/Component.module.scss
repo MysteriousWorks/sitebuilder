@@ -1,0 +1,37 @@
+.ComponentWrapper {
+  // cursor: pointer;
+  // box-sizing: border-box;
+  // border: 1px solid transparent;
+  // position: relative;
+  // margin: 0;
+  // padding: 0;
+  // display: contents;
+
+  label {
+    position: absolute;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    opacity: 0;
+  }
+
+  &.selected {
+    border: 1px solid red;
+  }
+
+  &.hover {
+    border: 1px dashed red;
+  }
+
+  &.selected, &.hover {
+    label {
+      opacity: 1;
+    }
+  }
+  
+}
+
+.componentLabel {
+  position:absolute;
+  opacity: 0;
+}

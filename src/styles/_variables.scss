@@ -1,7 +1,9 @@
-$component-color: #3a68ff;
-$white-color: #ffffff;
+$primaryColor: #111927;
+$secondaryColor: #6366F1;
+$secondaryAltColor: #F5F7FF;
 
 :export {
-  componentColor: $component-color;
-  whiteColor: $white-color;
+  primaryColor: $primaryColor;
+  secondaryColor: $secondaryColor;
+  secondaryAltColor: $secondaryAltColor;
 }
