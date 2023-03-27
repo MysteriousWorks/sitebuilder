@@ -1,8 +1,7 @@
-import {Typography} from '@mui/joy';
-import {Box, useTheme} from '@mui/material';
-import React, {useEffect, useState} from 'react';
-import {useRecoilValue} from 'recoil';
-import {focusedEl, HoveredElement, SelectedElement} from '../state';
+import { Box, useTheme, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { focusedEl, HoveredElement, SelectedElement } from "../state";
 
 const FocusController: React.FC = () => {
   const focusElzIndex = 999999;
@@ -10,8 +9,8 @@ const FocusController: React.FC = () => {
   const selectedEl = useRecoilValue(SelectedElement);
   const hoveredEls = useRecoilValue(HoveredElement);
   const hoveredEl = hoveredEls[hoveredEls.length - 1];
-  let selectedElProps: focusedEl = selectedEl || {} as any;
-  let hoverElProps: focusedEl = hoveredEl || {} as any;
+  let selectedElProps: focusedEl = selectedEl || ({} as any);
+  let hoverElProps: focusedEl = hoveredEl || ({} as any);
 
   let [hoveredLabelPos, setHoveredLabelPos] = useState({});
   let [selectedLabelPos, setSelectedLabelPos] = useState({});
@@ -21,9 +20,9 @@ const FocusController: React.FC = () => {
 
     if (rect?.width < 25 && rect?.height < 25) {
       if (rect?.left < 25) {
-        labelPos.right = `-${(rect.width * 2) + 2}px`;
+        labelPos.right = `-${rect.width * 2 + 2}px`;
       } else if (rect?.right < 25) {
-        labelPos.left = `-${(rect.width * 2) + 2}px`;
+        labelPos.left = `-${rect.width * 2 + 2}px`;
       }
     } else if (rect?.width < 50) {
       if (rect?.left < 20) {
@@ -34,33 +33,30 @@ const FocusController: React.FC = () => {
     }
 
     return labelPos;
-  }
+  };
 
   useEffect(() => {
-
     setHoveredLabelPos(getLabelPosition(hoverElProps.DOMRect));
-
-  }, [hoverElProps.DOMRect])
+  }, [hoverElProps.DOMRect]);
 
   useEffect(() => {
     // console.log('selectedElProps >> ', selectedElProps);
     // console.log('hoverElProps >> ', hoverElProps);
     setSelectedLabelPos(getLabelPosition(selectedElProps.DOMRect));
-
-  }, [selectedElProps.DOMRect])
+  }, [selectedElProps.DOMRect]);
 
   return (
     <>
       <Box
         id="selectedBox"
         sx={{
-          backgroundColor: 'transparent',
-          position: 'absolute',
-          borderWidth: '2px',
-          borderStyle: 'solid',
+          backgroundColor: "transparent",
+          position: "absolute",
+          borderWidth: "2px",
+          borderStyle: "solid",
           borderColor: theme.palette.secondary.main,
-          display: selectedElProps?.DOMRect?.height ? 'block' : 'none',
-          pointerEvents: 'none',
+          display: selectedElProps?.DOMRect?.height ? "block" : "none",
+          pointerEvents: "none",
           zIndex: focusElzIndex - 1,
         }}
         style={{
@@ -72,17 +68,16 @@ const FocusController: React.FC = () => {
       >
         <Typography
           component="span"
-          variant="solid"
           sx={{
-            padding: '5px',
+            padding: "5px",
             backgroundColor: theme.palette.secondary.main,
-            fontSize: '10px',
-            display: 'inline-block',
-            position: 'absolute',
-            right: '4px',
+            fontSize: "10px",
+            display: "inline-block",
+            position: "absolute",
+            right: "4px",
             borderRadius: 0,
             zIndex: focusElzIndex - 1,
-            pointerEvents: 'none'
+            pointerEvents: "none",
           }}
           style={selectedLabelPos}
         >
@@ -92,14 +87,14 @@ const FocusController: React.FC = () => {
       <Box
         id="hoverBox"
         sx={{
-          backgroundColor: 'transparent',
-          position: 'absolute',
-          borderWidth: '2px',
-          borderStyle: 'dashed',
+          backgroundColor: "transparent",
+          position: "absolute",
+          borderWidth: "2px",
+          borderStyle: "dashed",
           borderColor: theme.palette.secondary.main,
-          display: hoverElProps?.DOMRect?.height ? 'block' : 'none',
+          display: hoverElProps?.DOMRect?.height ? "block" : "none",
           zIndex: focusElzIndex,
-          pointerEvents: 'none'
+          pointerEvents: "none",
         }}
         style={{
           top: hoverElProps?.DOMRect?.top,
@@ -110,17 +105,16 @@ const FocusController: React.FC = () => {
       >
         <Typography
           component="span"
-          variant="solid"
           sx={{
-            padding: '5px',
+            padding: "5px",
             backgroundColor: theme.palette.secondary.main,
-            fontSize: '10px',
-            display: 'inline-block',
-            position: 'absolute',
-            right: '4px',
+            fontSize: "10px",
+            display: "inline-block",
+            position: "absolute",
+            right: "4px",
             borderRadius: 0,
             zIndex: focusElzIndex,
-            pointerEvents: 'none'
+            pointerEvents: "none",
           }}
           style={hoveredLabelPos}
         >
@@ -128,7 +122,7 @@ const FocusController: React.FC = () => {
         </Typography>
       </Box>
     </>
-  )
-}
+  );
+};
 
 export default FocusController;
