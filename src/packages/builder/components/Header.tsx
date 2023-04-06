@@ -1,6 +1,7 @@
 import { AppBar, Toolbar } from "@mui/material";
 import React from "react";
 import PageSelector from "./PageSelector";
+import SavePreviewPublish from "./SavePreviewPublish";
 import ViewportSelector from "./ViewportSelector";
 
 const Header: React.FC = () => {
@@ -16,6 +17,7 @@ const Header: React.FC = () => {
       <Toolbar>
         <PageSelector />
         <ViewportSelector />
+        <SavePreviewPublish />
       </Toolbar>
     </AppBar>
   );

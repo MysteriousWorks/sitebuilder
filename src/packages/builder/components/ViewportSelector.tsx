@@ -14,7 +14,8 @@ const ViewportSelector: React.FunctionComponent = () => {
         borderWidth: "0 1px 0 1px",
         borderColor: (theme: Theme) => theme.palette.grey[300],
         borderStyle: "solid",
-        mx: 2,
+        mr: 2,
+        ml: "auto",
         px: 2,
       }}
     >

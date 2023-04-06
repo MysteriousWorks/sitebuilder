@@ -10,12 +10,19 @@ declare module "@mui/material/styles/createPalette" {
   }
 }
 
+declare module "@mui/material/Button" {
+  interface ButtonPropsVariantOverrides {
+    filled: true;
+  }
+}
+
 const hoverColor = "red";
 const focusColor = "green";
 const defaultColor = "purple";
 const navbarHeight = "56px";
 export const DefaultTheme = createTheme({});
-export const BuilderTheme = createTheme({
+
+const BaseTheme = createTheme({
   palette: {
     mode: "light",
     primary: { main: variables.primaryColor },
@@ -31,6 +38,9 @@ export const BuilderTheme = createTheme({
       darkShade: "A700",
     }),
   },
+});
+
+export const ComponentTheme = createTheme({
   components: {
     MuiToolbar: {
       styleOverrides: {
@@ -56,7 +66,29 @@ export const BuilderTheme = createTheme({
         }),
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "20px",
+          textTransform: "capitalize",
+        },
+      },
+      variants: [
+        {
+          props: { variant: "filled" },
+          style: {
+            boxShadow: "none",
+            backgroundColor: BaseTheme.palette.secondary.main,
+            ":hover": {
+              backgroundColor: BaseTheme.palette.secondary.light,
+            },
+          },
+        },
+      ],
+    },
   },
 });
+
+export const BuilderTheme = createTheme(ComponentTheme, BaseTheme);
 
 export default BuilderTheme;
