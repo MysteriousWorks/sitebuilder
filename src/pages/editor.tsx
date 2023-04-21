@@ -25,6 +25,8 @@ export default function EditorPage() {
     <ThemeProvider theme={BuilderTheme}>
       <Builder
         initialPageMetaData={{
+          id: "test-page",
+          name: "Test Page",
           path: "/test",
         }}
       >
